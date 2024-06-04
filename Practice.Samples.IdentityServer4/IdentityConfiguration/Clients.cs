@@ -23,7 +23,7 @@ namespace Practice.Samples.IdentityServer4.IdentityConfiguration
                 },
                 new Client
                 {
-                    ClientId = "oidcMVCApp",
+                    ClientId = "MVCApplication",
                     ClientName = "Sample ASP.NET Core MVC Web App",
                     ClientSecrets = new List<Secret> {new Secret("GauravMaharjanIdentityServerPractice".Sha256())},
     
