@@ -41,7 +41,7 @@ namespace Practice.Samples.IdentityServer4
             app.UseRouting();
 
             app.UseIdentityServer();
-
+            app.UseAuthorization(); //This is for grant and diagonis
             app.UseEndpoints(endpoints => endpoints.MapDefaultControllerRoute());
         }
     }
