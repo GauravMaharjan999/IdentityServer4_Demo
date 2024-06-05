@@ -26,9 +26,11 @@ namespace Practice.Samples.IdentityServer4.IdentityConfiguration
                     ClientId = "MVCApplication",
                     ClientName = "Sample ASP.NET Core MVC Web App",
                     ClientSecrets = new List<Secret> {new Secret("GauravMaharjanIdentityServerPractice".Sha256())},
-    
+
                     AllowedGrantTypes = GrantTypes.Code,
                     RedirectUris = new List<string> {"https://localhost:44346/signin-oidc"},
+                    PostLogoutRedirectUris = { "https://localhost:44346/signout-callback-oidc" },
+
                     AllowedScopes = new List<string>
                     {
                         IdentityServerConstants.StandardScopes.OpenId,
@@ -47,13 +49,10 @@ namespace Practice.Samples.IdentityServer4.IdentityConfiguration
                     ClientName = "Sample ASP.NET Core MVC Hybrid Web App",
                     ClientSecrets = new List<Secret> { new Secret("GauravMaharjanIdentityServerPractice".Sha256()) },
 
-                    // Use Hybrid grant type
                     AllowedGrantTypes = GrantTypes.Hybrid,
+                    RedirectUris = new List<string>{ "https://localhost:44395/signin-oidc" },
+                    PostLogoutRedirectUris = { "https://localhost:44395/signout-callback-oidc" },
 
-                    RedirectUris = new List<string> { "https://localhost:44395/signin-oidc" },
-                    PostLogoutRedirectUris = new List<string> { "https://localhost:44395/signout-callback-oidc" },
-
-                    // Specify allowed scopes
                     AllowedScopes = new List<string>
                     {
                         IdentityServerConstants.StandardScopes.OpenId,
@@ -62,14 +61,12 @@ namespace Practice.Samples.IdentityServer4.IdentityConfiguration
                         "role",
                         "weatherApi.read"
                     },
+                    RequirePkce = false,
+                    //AllowPlainTextPkce = true,
+                    //AllowOfflineAccess = true
 
-                    // PKCE settings
-                    RequirePkce = true,
-                    AllowPlainTextPkce = false,
-
-                    // Allow offline access for refresh tokens
-                    AllowOfflineAccess = true
                 }
+
             };
         }
     }
