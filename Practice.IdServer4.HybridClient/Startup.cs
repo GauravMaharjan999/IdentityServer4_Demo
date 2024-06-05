@@ -29,27 +29,37 @@ namespace Practice.IdServer4.HybridClient
             //{
             //    options.DefaultScheme = "cookie";
             //    options.DefaultChallengeScheme = "oidc";
-            //})s
+            //})
                 services.AddAuthentication(options =>
                 {
                     options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
                     options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
                 })
-           .AddCookie("cookie")
+           .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme)
            .AddOpenIdConnect(OpenIdConnectDefaults.AuthenticationScheme, options =>
            {
                options.Authority = "https://localhost:44343";
                options.ClientId = "MVCHybridApplication";
                options.ClientSecret = "GauravMaharjanIdentityServerPractice";
-               options.ResponseType = "code id_token"; // Hybrid flow
-               options.SaveTokens = true;
-               options.GetClaimsFromUserInfoEndpoint = true;
 
-               options.Scope.Add("openid");
-               options.Scope.Add("profile");
-               options.Scope.Add("email");
-               options.Scope.Add("role");
+               options.ResponseType = "code id_token"; // Hybrid flow
+               //options.UsePkce = true;
+               //options.ResponseMode = "query";
+
+               options.SaveTokens = true;
+               //options.GetClaimsFromUserInfoEndpoint = true;
+
+               //options.Scope.Add("openid");
+               //options.Scope.Add("profile");
+               //options.Scope.Add("email");
+               //options.Scope.Add("role");
                options.Scope.Add("weatherApi.read");
+               // Specify the callback path
+               //options.CallbackPath = "/signin-oidc";
+               //options.SignedOutCallbackPath = "/signout-callback-oidc";
+
+
+
 
            });
             services.AddControllersWithViews();
