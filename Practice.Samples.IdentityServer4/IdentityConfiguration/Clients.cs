@@ -40,6 +40,35 @@ namespace Practice.Samples.IdentityServer4.IdentityConfiguration
 
                     RequirePkce = true,
                     AllowPlainTextPkce = false
+                },
+                new Client
+                {
+                    ClientId = "MVCHybridApplication",
+                    ClientName = "Sample ASP.NET Core MVC Hybrid Web App",
+                    ClientSecrets = new List<Secret> { new Secret("GauravMaharjanIdentityServerPractice".Sha256()) },
+
+                    // Use Hybrid grant type
+                    AllowedGrantTypes = GrantTypes.Hybrid,
+
+                    RedirectUris = new List<string> { "https://localhost:44395/signin-oidc" },
+                    PostLogoutRedirectUris = new List<string> { "https://localhost:44395/signout-callback-oidc" },
+
+                    // Specify allowed scopes
+                    AllowedScopes = new List<string>
+                    {
+                        IdentityServerConstants.StandardScopes.OpenId,
+                        IdentityServerConstants.StandardScopes.Profile,
+                        IdentityServerConstants.StandardScopes.Email,
+                        "role",
+                        "weatherApi.read"
+                    },
+
+                    // PKCE settings
+                    RequirePkce = true,
+                    AllowPlainTextPkce = false,
+
+                    // Allow offline access for refresh tokens
+                    AllowOfflineAccess = true
                 }
             };
         }
