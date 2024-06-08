@@ -1,0 +1,13 @@
+{
+  "name": "my-project",
+  "version": "1.0.0",
+  "scripts": {
+    "start-all": "npm run start-identity-server && npm run start-webapi && npm run start-client && npm run start-webapi-client && npm run start-hybrid-client",
+    "start-identity-server": "cd Practice.Samples.IdentityServer4 && dotnet build && dotnet run",
+    "start-webapi": "cd Practice.IdServer4.WebAPI && dotnet build && dotnet run",
+    "start-client": "cd Practice.IdServer4.Client && dotnet build && dotnet run",
+    "start-webapi-client": "cd Practice.IdServer4.WebAPI.Client && dotnet build && dotnet run",
+    "start-hybrid-client": "cd Practice.IdServer4.HybridClient && dotnet build && dotnet run",
+    "stop-all": "taskkill /IM dotnet.exe /F"
+  }
+}
